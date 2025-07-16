@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# 환경 변수 및 시크릿
+.env
+
+# IDE/Editor
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 기타
+*.log
+*.sqlite3
+
+# Docker
+*.pid
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Test/coverage
+.coverage
+htmlcov/
+dist/
+build/
+.eggs/
+*.egg-info/
+
+# git
+.git/
