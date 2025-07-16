@@ -15,7 +15,7 @@ class Message(BaseModel):
     sent_at: Optional[datetime] = None
 
 class User(BaseModel):
-    id: Optional[int]
+    id: Optional[int] = None
     telegram_id: int
     keyword: List[str] = []
     created_at: Optional[datetime] = None

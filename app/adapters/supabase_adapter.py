@@ -24,11 +24,20 @@ class SupabaseAdapter(CrawlRepository, UserRepository):
 
     # --- UserRepository ---
     def register_user(self, user: User) -> None:
+        from datetime import datetime
+        def to_pg_datetime(val):
+            if val is None:
+                return None
+            if isinstance(val, int):
+                return datetime.utcfromtimestamp(val).isoformat()
+            if isinstance(val, datetime):
+                return val.isoformat()
+            return str(val)
         self.client.table("user").upsert({
             "telegram_id": user.telegram_id,
             "keyword": user.keyword,
-            "created_at": user.created_at,
-            "last_sent_at": user.last_sent_at
+            "created_at": to_pg_datetime(user.created_at),
+            "last_sent_at": to_pg_datetime(user.last_sent_at)
         }).execute()
 
     def get_user(self, telegram_id: int) -> Optional[User]:

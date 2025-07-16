@@ -18,19 +18,8 @@ notify_usecase = NotifyUseCase(telegram_adapter)
 def run_telegram():
     telegram_adapter.start_polling()
 
-import os
-
 if __name__ == "__main__":
-    mode = os.getenv("RUN_MODE", "both")
-    if mode == "telegram":
-        telegram_adapter.start_polling()
-    elif mode == "fastapi":
-        uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
-    else:
-        # 운영/통합 환경: 두 서비스 동시 실행
-        t = threading.Thread(target=run_telegram, daemon=True)
-        t.start()
-        uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
 
 @app.post("/crawl_and_notify/")
 def crawl_and_notify(url: str, chat_id: str):

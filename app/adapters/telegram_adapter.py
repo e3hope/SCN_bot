@@ -33,9 +33,12 @@ class TelegramAdapter(MessageSender):
         self.app.run_polling()
 
     async def handle_start(self, update, context):
+        print(update)
         telegram_id = int(update.effective_chat.id)
         print(f"[수신] /start from {telegram_id}")
-        user = User(telegram_id=telegram_id, keyword=[], created_at=datetime.utcnow())
+        import time
+        now_ts = int(time.time())
+        user = User(telegram_id=telegram_id, keyword=[], created_at=now_ts)
         self.supabase.register_user(user)
         await context.bot.send_message(chat_id=telegram_id, text="회원 등록이 완료되었습니다.")
 
