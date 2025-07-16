@@ -1,6 +1,6 @@
 import os
 from supabase import create_client, Client
-from app.domain.repositories import CrawlRepository, UserRepository, UserKeywordRepository
+from app.domain.repositories import CrawlRepository, UserRepository
 from app.domain.entities import CrawlData, User, UserKeyword
 from typing import List, Optional
 from dotenv import load_dotenv

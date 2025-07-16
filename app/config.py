@@ -1,5 +1,16 @@
 import os
+import logging
 from dotenv import load_dotenv
+
+# 로깅 설정
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
+    handlers=[
+        logging.FileHandler("scn_bot.log"),
+        logging.StreamHandler()
+    ]
+)
 
 load_dotenv()
 

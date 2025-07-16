@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from .entities import CrawlData, Message
+from app.domain.entities import CrawlData, Message, User
 from typing import List, Optional
 
 class CrawlRepository(ABC):
