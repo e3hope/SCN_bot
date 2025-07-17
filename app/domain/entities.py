@@ -3,8 +3,7 @@ from typing import Optional, List
 from datetime import datetime
 
 class CrawlData(BaseModel):
-    id: Optional[str]
-    url: str
+    id: Optional[int] = None
     title: str
     content: str
     crawled_at: datetime
@@ -22,7 +21,7 @@ class User(BaseModel):
     last_sent_at: Optional[datetime] = None
 
 class UserKeyword(BaseModel):
-    id: Optional[str]
+    id: Optional[int] = None
     chat_id: str
     keyword: str
 
