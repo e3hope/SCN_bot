@@ -7,3 +7,11 @@ class CrawlRequest(BaseModel):
 class CrawlResponse(BaseModel):
     result: str
     title: str
+
+class CrawlingResult(BaseModel):
+    id: Optional[int]
+    user_id: int
+    keyword: str
+    title: str
+    link: str
+    saved_at: datetime

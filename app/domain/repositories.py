@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from app.domain.entities import CrawlData, Message, User
+from app.domain.entities import CrawlData, Message, User, CrawlingResult
 from typing import List, Optional
 
 class CrawlRepository(ABC):
@@ -32,3 +32,15 @@ class UserRepository(ABC):
     @abstractmethod
     def get_keywords(self, telegram_id: int) -> List[str]:
         pass
+
+class CrawlingResultRepository(ABC):
+    @abstractmethod
+    def upsert_results(self, user_id: int, keyword: str, items: List[CrawlingResult]) -> None:
+        """유저/키워드별로 최대 5개만 저장, 기존 데이터는 삭제"""
+        pass
+
+    @abstractmethod
+    def get_results(self, user_id: int, keyword: str, limit: int = 5) -> List[CrawlingResult]:
+        """유저/키워드별로 최신순 N개 반환"""
+        pass
+

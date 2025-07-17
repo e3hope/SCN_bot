@@ -25,3 +25,11 @@ class UserKeyword(BaseModel):
     id: Optional[str]
     chat_id: str
     keyword: str
+
+class CrawlingResult(BaseModel):
+    id: Optional[int]
+    user_id: int
+    keyword: str
+    title: str
+    link: str
+    saved_at: datetime
