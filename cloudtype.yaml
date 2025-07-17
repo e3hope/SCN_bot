@@ -1,0 +1,28 @@
+# cloudtype.yaml for multi-service deployment
+# See: https://docs.cloudtype.io/guide/project/service/
+
+services:
+  web:
+    build:
+      dockerfile: Dockerfile
+    command: python3 -m app.main
+    env:
+      - name: SUPABASE_URL
+        value: ${SUPABASE_URL}
+      - name: SUPABASE_KEY
+        value: ${SUPABASE_KEY}
+      - name: TELEGRAM_BOT_TOKEN
+        value: ${TELEGRAM_BOT_TOKEN}
+    ports:
+      - 8000
+  telegram-bot:
+    build:
+      dockerfile: Dockerfile
+    command: python3 -m app.bot_main
+    env:
+      - name: SUPABASE_URL
+        value: ${SUPABASE_URL}
+      - name: SUPABASE_KEY
+        value: ${SUPABASE_KEY}
+      - name: TELEGRAM_BOT_TOKEN
+        value: ${TELEGRAM_BOT_TOKEN}
